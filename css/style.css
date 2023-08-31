@@ -16,3 +16,18 @@ a {
 h2 a { font-size: 0.9rem;}
 
 a:hover, a:focus { text-decoration: underline;}
+
+.produtos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 80%;
+    margin: auto;
+}
+.produto{
+    background-color: lightslategray;
+    padding: 1rem;
+    width: 49%;
+    box-shadow: rgba(0,0,0,0.3) 0 0 3px 1px;
+
+}

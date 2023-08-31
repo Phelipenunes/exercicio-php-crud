@@ -1,3 +1,9 @@
+<?php
+require_once "src/funcoes.php";
+
+$alunos = calcularmedia($conexao, $id, $nota1, $nota2)
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,13 +18,17 @@
     <hr>
     <p><a href="inserir.php">Inserir novo aluno</a></p>
 
-   <!-- Aqui você deverá criar o HTML que quiser e o PHP necessários
-para exibir a relação de alunos existentes no banco de dados.
-
-Obs.: não se esqueça de criar também os links dinâmicos para
-as páginas de atualização e exclusão. -->
-
-
+    <div class="produtos">
+        <?php foreach($alunos as $aluno){?>
+        <article class="produto">
+        <h3>Nome: <?=$aluno['nome']?></h3>
+        <p>Nota1: <?=$aluno['nota1']?></p>
+        <p>Nota2: <?=$aluno['nota2']?></p>
+        <p>média: <?=$aluno['media']?></p>
+        <p>Situação: <?=?></p>
+        </article>
+        <?php } ?>
+    </div>
     <p><a href="index.php">Voltar ao início</a></p>
 </div>
 

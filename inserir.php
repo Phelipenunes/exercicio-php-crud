@@ -1,3 +1,27 @@
+<?php
+require_once "src/funcoes.php";
+
+
+if(isset($_POST['inserir'])){
+    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
+    
+    $nota1 = filter_input(
+        INPUT_POST, "nota1", 
+        FILTER_SANITIZE_NUMBER_FLOAT,
+        FILTER_FLAG_ALLOW_FRACTION
+    );
+
+	$nota2 = filter_input(
+        INPUT_POST, "nota2", 
+        FILTER_SANITIZE_NUMBER_FLOAT,
+        FILTER_FLAG_ALLOW_FRACTION
+    );
+
+	inseriraluno($conexao, $nome, $nota1, $nota2);
+
+    header("location:visualizar.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,17 +37,17 @@
     		
     <p>Utilize o formulário abaixo para cadastrar um novo aluno.</p>
 
-	<form action="#" method="post">
+	<form action="" method="post">
 	    <p><label for="nome">Nome:</label>
-	    <input type="text" id="nome" required></p>
+	    <input type="text" id="nome" name="nome" required></p>
         
-      <p><label for="primeira">Primeira nota:</label>
-	    <input type="number" id="primeira" step="0.01" min="0.00" max="10.00" required></p>
+      <p><label for="nota1">Primeira nota:</label>
+	    <input type="number" id="nota1" name="nota1" step="0.01" min="0.00" max="10.00" required></p>
 	    
-	    <p><label for="segunda">Segunda nota:</label>
-	    <input type="number" id="segunda" step="0.01" min="0.00" max="10.00" required></p>
+	    <p><label for="nota2">Segunda nota:</label>
+	    <input type="number" id="nota2" name="nota2" step="0.01" min="0.00" max="10.00" required></p>
 	    
-      <button>Cadastrar aluno</button>
+      <button type="submit" name="inserir">Cadastrar aluno</button>
 	</form>
 
     <hr>

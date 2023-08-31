@@ -1,3 +1,6 @@
+<?php
+require_once "!funcoes.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
