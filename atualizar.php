@@ -1,5 +1,27 @@
 <?php
-require_once "!funcoes.php";
+require_once "src/funcoes.php";
+require_once "src/funcoes-utilitarias.php";
+
+$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+$aluno = lerumaluno($conexao, $id);
+
+ 
+if(isset($_POST['atualizar'])){
+    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
+    
+
+    $nota1 = filter_input(
+        INPUT_POST, "nota1", FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION
+    );
+
+    $nota2 = filter_input(
+        INPUT_POST, "nota2", FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION
+    );
+
+    atualizaraluno($conexao, $id, $nome, $nota1 , $nota2);
+
+    header("location:visualizar.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,32 +38,32 @@ require_once "!funcoes.php";
     		
     <p>Utilize o formulário abaixo para atualizar os dados do aluno.</p>
 
-    <form action="#" method="post">
+    <form action="" method="post">
         
 	    <p><label for="nome">Nome:</label>
-	    <input type="text" name="nome" id="nome" required></p>
+	    <input value="<?=$aluno['nome']?>" type="text" name="nome" id="nome" required></p>
         
-        <p><label for="primeira">Primeira nota:</label>
-	    <input name="primeira" type="number" id="primeira" step="0.01" min="0.00" max="10.00" required></p>
+        <p><label for="nota1">Primeira nota:</label>
+	    <input value="<?=$aluno['nota1']?>" name="nota1" type="number" id="nota1" step="0.01" min="0.00" max="10.00" required></p>
 	    
-	    <p><label for="segunda">Segunda nota:</label>
-	    <input name="segunda" type="number" id="segunda" step="0.01" min="0.00" max="10.00" required></p>
+	    <p><label for="nota2">Segunda nota:</label>
+	    <input value="<?=$aluno['nota2']?>" name="nota2" type="number" id="nota2" step="0.01" min="0.00" max="10.00" required></p>
 
         <p>
         <!-- Campo somente leitura e desabilitado para edição.
         Usado apenas para exibição do valor da média -->
             <label for="media">Média:</label>
-            <input name="media" type="number" id="media" step="0.01" min="0.00" max="10.00" readonly disabled>
+            <input value="<?=$aluno['media']?>" name="media" type="number" id="media" step="0.01" min="0.00" max="10.00" readonly disabled>
         </p>
 
         <p>
         <!-- Campo somente leitura e desabilitado para edição 
         Usado apenas para exibição do texto da situação -->
             <label for="situacao">Situação:</label>
-	        <input type="text" name="situacao" id="situacao" readonly disabled>
+	        <input value="<?=situacao($aluno['media'])?>" type="text" name="situacao" id="situacao" readonly disabled>
         </p>
 	    
-        <button name="atualizar-dados">Atualizar dados do aluno</button>
+        <button type="submit" name="atualizar">Atualizar dados do aluno</button>
 	</form>    
     
     <hr>

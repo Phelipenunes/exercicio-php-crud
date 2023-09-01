@@ -1,8 +1,8 @@
 <?php
 require_once "src/funcoes.php";
+require_once "src/funcoes-utilitarias.php";
 
-$alunos = calcularmedia($conexao, $id, $nota1, $nota2)
-
+$alunos = leralunos($conexao);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,18 +19,22 @@ $alunos = calcularmedia($conexao, $id, $nota1, $nota2)
     <p><a href="inserir.php">Inserir novo aluno</a></p>
 
     <div class="produtos">
-        <?php foreach($alunos as $aluno){?>
+        <?php foreach($alunos as $aluno){?>    
         <article class="produto">
         <h3>Nome: <?=$aluno['nome']?></h3>
         <p>Nota1: <?=$aluno['nota1']?></p>
         <p>Nota2: <?=$aluno['nota2']?></p>
         <p>média: <?=$aluno['media']?></p>
-        <p>Situação: <?=?></p>
+        <p>Situação: <?=situacao($aluno['media']);?></p>
+        <p>
+        <a href="atualizar.php?id=<?=$aluno['id']?>">Editar</a> | 
+        <a class="apaga" href="excluir.php?id=<?=$aluno['id']?>">Excluir</a>
+        </p> 
         </article>
         <?php } ?>
     </div>
     <p><a href="index.php">Voltar ao início</a></p>
 </div>
-
+<script src="js/confirmcao.js"></script>
 </body>
 </html>

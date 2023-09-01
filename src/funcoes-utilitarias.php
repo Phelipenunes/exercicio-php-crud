@@ -11,11 +11,12 @@ function somaquantidade(float $preco, int $quantidade){
 
 
 function situacao(float $media){
-    if ($media > ){
-        
-    } else {
-        # code...
+    if ($media >= 7 ){
+        echo "Aprovado!";
+    } elseif($media >= 5){
+        echo "recuperação!";
+    }else{
+        echo "Reprovado!";
     }
-    
 };
 ?>
