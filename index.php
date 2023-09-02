@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Exercício CRUD com PHP e MySQL</title>
 <link href="css/style.css" rel="stylesheet">
+<style>
+    body{
+        background-color: lightslategray;
+    }
+    hr{
+        border: black 1px solid;
+    }
+    h1{
+        text-align: center;
+    }
+</style>
 </head>
 <body>
 <div class="container">
@@ -12,10 +23,8 @@
     <hr>
     <h2>Gerenciamento de alunos, notas, médias e aprovação/reprovação</h2>
     <hr>
-    <ul>
-        <li><a href="visualizar.php">Visualizar Alunos</a></li>
-        <li><a href="inserir.php">Inserir novo aluno</a></li>
-    </ul>
+    <p><a href="visualizar.php">Visualizar Alunos</a></p>
+    <p><a href="inserir.php">Inserir novo aluno</a></p>
 </div>
 
 </body>
